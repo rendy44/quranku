@@ -20,19 +20,18 @@
 }
 
 .ayatToolBox {
+    font-size: .8rem;
+    color: rgba($black, .5);
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
 
-    // width: 50px;
     button {
-        color: rgba($black, .5);
+        color: inherit;
+        font-size: inherit;
         background-color: transparent;
         border: none;
-        display: flex;
-        font-size: .8rem;
         @include defaultTransition;
-
-        svg {
-            margin-right: .3rem;
-        }
 
         &:hover,
         &:focus,
@@ -42,7 +41,28 @@
     }
 
     @include breakpoint(768px) {
+        padding-top: .5rem;
         margin-right: 1.5rem;
+        flex-direction: column;
+    }
+}
+
+.ayatToolboxDetail {
+    display: flex;
+    padding: 0 !important;
+    margin-right: 1rem;
+
+    svg {
+        margin-right: .3rem;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    @include breakpoint(768px) {
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
 }
 

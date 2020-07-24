@@ -7,7 +7,7 @@ import Basmallah from '../components/surat/Basmallah';
 import Section from '../components/global/Section';
 import styles from './suratId.module.scss';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { FaCopy } from 'react-icons/fa';
+import { FaCopy, FaHashtag } from 'react-icons/fa';
 
 export class DetailSuratBody extends React.Component {
 
@@ -50,6 +50,7 @@ export class DetailSuratBody extends React.Component {
 
                     return (
                         AyatListHtml.push(<DetailAyat
+                            suratIndex={this.state.suratId}
                             key={i}
                             ayatIndex={cleanAyatStr}
                             ayatAr={ayat[1]}
@@ -138,11 +139,14 @@ const DetailAyat = (props) => {
     return (
         <div className={styles.ayatItem}>
             <div className={styles.ayatToolBox}>
+                <div className={styles.ayatToolboxDetail}>
+                    <FaHashtag />{props.suratIndex}:{props.ayatIndex}
+                </div>
                 <CopyToClipboard text={props.ayatAr}
                     onCopy={() => {
                         console.log('Copied')
                     }}>
-                    <button>
+                    <button className={styles.ayatToolboxDetail}>
                         <FaCopy /> Copy
                     </button>
                 </CopyToClipboard>
@@ -163,6 +167,7 @@ const DetailAyat = (props) => {
 }
 
 DetailAyat.propTypes = {
+    suratIndex: PropTypes.number.isRequired,
     ayatAr: PropTypes.string.isRequired,
     ayatIndex: PropTypes.string.isRequired,
     ayatArabicNumber: PropTypes.string.isRequired,
