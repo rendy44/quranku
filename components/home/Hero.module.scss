@@ -1,0 +1,46 @@
+@import '../../styles/MainUtil';
+
+.hero {
+    height: 320px;
+    // background-image: url('./img/hero.bg.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+
+    &>* {
+        position: relative;
+        z-index: 1;
+    }
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba($main, .9);
+    }
+}
+
+.title {
+    text-align: center;
+    @include arabicCalligraphy;
+    font-size: 3rem;
+    color: $white;
+    margin: 0 0 .5rem;
+}
+
+.lead {
+    font-size: 1.2rem;
+    text-align: center;
+    color: rgba($white, .7);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+}

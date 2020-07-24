@@ -1,0 +1,12 @@
+@import '../../styles/MainUtil';
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon-loading {
+        fill: $main !important;
+    }
+}

@@ -1,0 +1,34 @@
+@import '../../styles/MainUtil';
+
+.header {
+    background-color: $white;
+    // padding: 1rem 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    @include boxShadow(0, .2rem, .4rem, rgba($black, .15));
+    @include defaultTransition;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    a {
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+}

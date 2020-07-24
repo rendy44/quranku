@@ -1,0 +1,12 @@
+@import '../../styles/MainUtil';
+
+.footer {
+    background-color: $main;
+    padding: 2rem 0;
+    color: $white;
+
+    a {
+        color: $white;
+        font-weight: 600;
+    }
+}

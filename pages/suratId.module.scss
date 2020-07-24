@@ -1,0 +1,95 @@
+@import '../styles/MainUtil';
+
+.detailSurat {
+    margin-top: 50px;
+}
+
+.ayatItems {}
+
+.ayatItem {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba($black, .1);
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.ayatToolBox {
+
+    // width: 50px;
+    button {
+        color: rgba($black, .1);
+        background-color: transparent;
+        border: none;
+        display: flex;
+        font-size: .8rem;
+        @include defaultTransition;
+
+        svg {
+            margin-right: .3rem;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $black;
+        }
+    }
+}
+
+.ayatDetail {}
+
+.ayatTextAr {
+    direction: rtl;
+    margin-bottom: .5rem;
+}
+
+.innerAyatTextAr {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+.ayatTextArBreaker {
+    font-size: 2rem;
+    vertical-align: super;
+    position: relative;
+}
+
+.innerAyatTextArBreaker {
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-weight: 600;
+    position: relative;
+    top: -2px;
+    color: $main;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border: 2px dotted $main;
+        @include borderRadius(50%);
+    }
+}
+
+.ayatTextTranslation {
+    p {
+        margin: 0;
+        line-height: 1.4;
+        font-size: 1rem;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+}
