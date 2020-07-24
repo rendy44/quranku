@@ -40,5 +40,17 @@
 
     svg {
         display: inline-block;
+        @include defaultTransition;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: $main;
+        border-color: $white;
+
+        svg {
+            @include zoom;
+        }
     }
 }
