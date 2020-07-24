@@ -13,6 +13,10 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+
+    @include breakpoint(768px) {
+        flex-direction: row;
+    }
 }
 
 .ayatToolBox {
@@ -36,6 +40,10 @@
             color: $black;
         }
     }
+
+    @include breakpoint(768px) {
+        margin-right: 1.5rem;
+    }
 }
 
 .ayatDetail {}
@@ -58,9 +66,9 @@
 }
 
 .innerAyatTextArBreaker {
-    font-size: 12px;
-    width: 30px;
-    height: 30px;
+    font-size: 1rem;
+    width: 35px;
+    height: 35px;
     display: inline-flex;
     align-items: center;
     justify-content: center;

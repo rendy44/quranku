@@ -54,6 +54,7 @@ export class DetailSuratBody extends React.Component {
                             ayatIndex={cleanAyatStr}
                             ayatAr={ayat[1]}
                             ayatTranslation={cleanAyatTrans}
+                            ayatArabicNumber={this.convertToArabic(cleanAyatStr)}
                         />)
                     )
                 })
@@ -120,6 +121,13 @@ export class DetailSuratBody extends React.Component {
             import('../public/data/translation/id/id_translation_' + this.props.suratId + '.json')
         )
     }
+
+    convertToArabic(number) {
+        var id = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        return number.replace(/[0-9]/g, function (w) {
+            return id[+w]
+        });
+    }
 }
 
 DetailSuratBody.propTypes = {
@@ -143,7 +151,7 @@ const DetailAyat = (props) => {
                 <div className={styles.ayatTextAr}>
                     <span className={styles.innerAyatTextAr}>{props.ayatAr}</span>
                     <span className={styles.ayatTextArBreaker}>
-                        <span className={styles.innerAyatTextArBreaker}>{props.ayatIndex}</span>
+                        <span className={styles.innerAyatTextArBreaker}>{props.ayatArabicNumber}</span>
                     </span>
                 </div>
                 <div className={styles.ayatTextTranslation}>
@@ -157,6 +165,7 @@ const DetailAyat = (props) => {
 DetailAyat.propTypes = {
     ayatAr: PropTypes.string.isRequired,
     ayatIndex: PropTypes.string.isRequired,
+    ayatArabicNumber: PropTypes.string.isRequired,
     ayatTranslation: PropTypes.string.isRequired
 }
 
