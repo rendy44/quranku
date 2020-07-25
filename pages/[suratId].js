@@ -7,7 +7,8 @@ import Basmallah from '../components/surat/Basmallah';
 import Section from '../components/global/Section';
 import styles from './suratId.module.scss';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { FaCopy, FaHashtag } from 'react-icons/fa';
+import { FaCopy, FaHashtag, FaPlay } from 'react-icons/fa';
+import Sound from 'react-sound';
 
 export class DetailSuratBody extends React.Component {
 
@@ -36,7 +37,6 @@ export class DetailSuratBody extends React.Component {
 
                 // The view for displaying all ayat.
                 let maybeBasmallah = 1 < this.state.suratId ? <Basmallah /> : '';
-                console.log(this.state.suratId)
 
                 // Map the ayats.
                 AyatList.map((ayat, i) => {
@@ -59,7 +59,6 @@ export class DetailSuratBody extends React.Component {
                         />)
                     )
                 })
-
 
                 return (
                     <Layout title={'Surat ' + this.state.suratTitle}>
@@ -150,6 +149,9 @@ const DetailAyat = (props) => {
                         <FaCopy /> Copy
                     </button>
                 </CopyToClipboard>
+                <button className={styles.ayatToolboxDetail}>
+                    <FaPlay /> Play
+                </button>
             </div>
             <div className={styles.ayatDetail}>
                 <div className={styles.ayatTextAr}>
@@ -179,7 +181,7 @@ export default function DetailSurat() {
     let { suratId } = router.query;
     if (suratId) {
         return (
-            <DetailSuratBody suratId={suratId} />
+            <DetailSuratBody suratId={parseInt(suratId)} />
         )
     } else {
         return (
