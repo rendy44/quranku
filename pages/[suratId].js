@@ -22,8 +22,20 @@ export class DetailSuratBody extends React.Component {
             suratTitle: '',
             suratTotalAyat: 0,
             suratAyatArr: [],
-            suratTranslationArr: []
+            suratTranslationArr: [],
+            audioAyatIndex: '',
+            audioIsPlaying: false
         }
+
+        this.updateAudioPlayingStatus = this.updateAudioPlayingStatus.bind(this);
+    }
+
+    updateAudioPlayingStatus(ayatIndex) {
+        console.log(ayatIndex)
+        this.setState({
+            audioAyatIndex: ayatIndex,
+            audioIsPlaying: true
+        })
     }
 
     render() {
@@ -34,13 +46,17 @@ export class DetailSuratBody extends React.Component {
 
         if (isLoaded) {
             if (isLoadSuccess) {
+                const audioSrc = '../data/audio/001/004.mp3';
+                const audioPlayStatus = this.state.audioIsPlaying ? Sound.status.PLAYING : Sound.status.STOPPED;
+                <Sound url={audioSrc} playStatus={audioPlayStatus} autoLoad={true} />
+                console.log(audioPlayStatus)
 
                 // The view for displaying all ayat.
                 let maybeBasmallah = 1 < this.state.suratId ? <Basmallah /> : '';
 
                 // Map the ayats.
                 AyatList.map((ayat, i) => {
-                    const cleanAyatStr = ayat[0].replace('verse_', ''),
+                    const cleanAyatIndex = ayat[0].replace('verse_', ''),
                         cleanAyatTrans = TranslationList[i][1];
 
                     // Skip if it is verse_0;
@@ -49,14 +65,37 @@ export class DetailSuratBody extends React.Component {
                     }
 
                     return (
-                        AyatListHtml.push(<DetailAyat
-                            suratIndex={this.state.suratId}
-                            key={i}
-                            ayatIndex={cleanAyatStr}
-                            ayatAr={ayat[1]}
-                            ayatTranslation={cleanAyatTrans}
-                            ayatArabicNumber={this.convertToArabic(cleanAyatStr)}
-                        />)
+                        AyatListHtml.push(
+                            <div className={styles.ayatItem} key={i}>
+                                <div className={styles.ayatToolBox}>
+                                    <div className={styles.ayatToolboxDetail}>
+                                        <FaHashtag />{this.state.suratId}:{cleanAyatIndex}
+                                    </div>
+                                    <CopyToClipboard text={ayat[1]}
+                                        onCopy={() => {
+                                            console.log('Copied')
+                                        }}>
+                                        <button className={styles.ayatToolboxDetail}>
+                                            <FaCopy /> Copy
+                                    </button>
+                                    </CopyToClipboard>
+                                    <button className={styles.ayatToolboxDetail} onClick={() => this.updateAudioPlayingStatus(cleanAyatIndex)}>
+                                        <FaPlay /> Play
+                                    </button>
+                                </div>
+                                <div className={styles.ayatDetail}>
+                                    <div className={styles.ayatTextAr}>
+                                        <span className={styles.innerAyatTextAr}>{ayat[1]}</span>
+                                        <span className={styles.ayatTextArBreaker}>
+                                            <span className={styles.innerAyatTextArBreaker}>{this.convertToArabic(cleanAyatIndex)}</span>
+                                        </span>
+                                    </div>
+                                    <div className={styles.ayatTextTranslation}>
+                                        <p>{cleanAyatTrans}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
                     )
                 })
 
@@ -132,48 +171,6 @@ export class DetailSuratBody extends React.Component {
 
 DetailSuratBody.propTypes = {
     suratId: PropTypes.number.isRequired
-}
-
-const DetailAyat = (props) => {
-    return (
-        <div className={styles.ayatItem}>
-            <div className={styles.ayatToolBox}>
-                <div className={styles.ayatToolboxDetail}>
-                    <FaHashtag />{props.suratIndex}:{props.ayatIndex}
-                </div>
-                <CopyToClipboard text={props.ayatAr}
-                    onCopy={() => {
-                        console.log('Copied')
-                    }}>
-                    <button className={styles.ayatToolboxDetail}>
-                        <FaCopy /> Copy
-                    </button>
-                </CopyToClipboard>
-                <button className={styles.ayatToolboxDetail}>
-                    <FaPlay /> Play
-                </button>
-            </div>
-            <div className={styles.ayatDetail}>
-                <div className={styles.ayatTextAr}>
-                    <span className={styles.innerAyatTextAr}>{props.ayatAr}</span>
-                    <span className={styles.ayatTextArBreaker}>
-                        <span className={styles.innerAyatTextArBreaker}>{props.ayatArabicNumber}</span>
-                    </span>
-                </div>
-                <div className={styles.ayatTextTranslation}>
-                    <p>{props.ayatTranslation}</p>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-DetailAyat.propTypes = {
-    suratIndex: PropTypes.number.isRequired,
-    ayatAr: PropTypes.string.isRequired,
-    ayatIndex: PropTypes.string.isRequired,
-    ayatArabicNumber: PropTypes.string.isRequired,
-    ayatTranslation: PropTypes.string.isRequired
 }
 
 export default function DetailSurat() {
