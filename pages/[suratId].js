@@ -8,7 +8,6 @@ import Section from '../components/global/Section';
 import styles from './suratId.module.scss';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FaCopy, FaHashtag, FaPlay } from 'react-icons/fa';
-import Sound from 'react-sound';
 
 export class DetailSuratBody extends React.Component {
 
@@ -39,17 +38,18 @@ export class DetailSuratBody extends React.Component {
     }
 
     render() {
-        const { isLoaded, isLoadSuccess, suratAyatArr, suratTranslationArr } = this.state;
+        const {
+            isLoaded,
+            isLoadSuccess,
+            suratAyatArr,
+            suratTranslationArr,
+        } = this.state;
         let AyatList = Object.entries(suratAyatArr);
         let AyatListHtml = [];
         let TranslationList = Object.entries(suratTranslationArr);
 
         if (isLoaded) {
             if (isLoadSuccess) {
-                const audioSrc = '../data/audio/001/004.mp3';
-                const audioPlayStatus = this.state.audioIsPlaying ? Sound.status.PLAYING : Sound.status.STOPPED;
-                <Sound url={audioSrc} playStatus={audioPlayStatus} autoLoad={true} />
-                console.log(audioPlayStatus)
 
                 // The view for displaying all ayat.
                 let maybeBasmallah = 1 < this.state.suratId ? <Basmallah /> : '';
@@ -57,9 +57,10 @@ export class DetailSuratBody extends React.Component {
                 // Map the ayats.
                 AyatList.map((ayat, i) => {
                     const cleanAyatIndex = ayat[0].replace('verse_', ''),
-                        cleanAyatTrans = TranslationList[i][1];
+                        cleanAyatTrans = TranslationList[i][1],
+                        cleanAyatAr = ayat[1];
 
-                    // Skip if it is verse_0;
+                    // Skip if it is verse_0; 
                     if ('verse_0' === ayat[0]) {
                         return false;
                     }
@@ -71,7 +72,7 @@ export class DetailSuratBody extends React.Component {
                                     <div className={styles.ayatToolboxDetail}>
                                         <FaHashtag />{this.state.suratId}:{cleanAyatIndex}
                                     </div>
-                                    <CopyToClipboard text={ayat[1]}
+                                    <CopyToClipboard text={cleanAyatAr}
                                         onCopy={() => {
                                             console.log('Copied')
                                         }}>
@@ -79,13 +80,10 @@ export class DetailSuratBody extends React.Component {
                                             <FaCopy /> Copy
                                     </button>
                                     </CopyToClipboard>
-                                    <button className={styles.ayatToolboxDetail} onClick={() => this.updateAudioPlayingStatus(cleanAyatIndex)}>
-                                        <FaPlay /> Play
-                                    </button>
                                 </div>
                                 <div className={styles.ayatDetail}>
                                     <div className={styles.ayatTextAr}>
-                                        <span className={styles.innerAyatTextAr}>{ayat[1]}</span>
+                                        <span className={styles.innerAyatTextAr}>{cleanAyatAr}</span>
                                         <span className={styles.ayatTextArBreaker}>
                                             <span className={styles.innerAyatTextArBreaker}>{this.convertToArabic(cleanAyatIndex)}</span>
                                         </span>
