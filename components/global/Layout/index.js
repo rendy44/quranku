@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Header from './Header';
+import Header from '../Header/Header';
 import PropTypes from 'prop-types';
-import Footer from "./Footer";
+import Footer from "../Footer";
 
 export default function Layout(props) {
     return (

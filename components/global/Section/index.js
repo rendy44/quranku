@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Section.module.scss';
+import styles from './style.module.scss';
 
 export default function Section(props) {
     const colSizeCss = props.isFull ? 'col-sm-1-1' : 'col-sm-6-7 col-md-4-5 col-lg-3-4';

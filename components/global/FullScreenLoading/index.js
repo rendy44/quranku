@@ -1,5 +1,5 @@
 import ReactLoading from 'react-loading';
-import styles from './FullscreenLoading.module.scss';
+import styles from './style.module.scss';
 
 export default function FullScreenLoading() {
     return (
