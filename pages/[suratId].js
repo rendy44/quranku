@@ -21,20 +21,8 @@ export class DetailSuratBody extends React.Component {
             suratTitle: '',
             suratTotalAyat: 0,
             suratAyatArr: [],
-            suratTranslationArr: [],
-            audioAyatIndex: '',
-            audioIsPlaying: false
+            suratTranslationArr: []
         }
-
-        this.updateAudioPlayingStatus = this.updateAudioPlayingStatus.bind(this);
-    }
-
-    updateAudioPlayingStatus(ayatIndex) {
-        console.log(ayatIndex)
-        this.setState({
-            audioAyatIndex: ayatIndex,
-            audioIsPlaying: true
-        })
     }
 
     render() {
