@@ -4,7 +4,12 @@ import styles from './style.module.scss';
 export default function Section(props) {
     const colSizeCss = props.isFull ? 'col-sm-1-1' : 'col-sm-6-7 col-md-4-5 col-lg-3-4';
     const maybeTitle = props.title ? <div className={styles.sectionTitle}><h2>{props.title}</h2></div> : '';
-    const sectionClass = props.extraClass ? styles.section + ' ' + props.extraClass : styles.section;
+    let sectionClass = props.extraClass ? styles.section + ' ' + props.extraClass : styles.section;
+
+    if (props.noHero) {
+        sectionClass += ' ' + styles.noHero;
+    }
+
     return (
         <>
             <section className={sectionClass}>
@@ -24,5 +29,6 @@ export default function Section(props) {
 Section.propTypes = {
     title: PropTypes.string,
     isFull: PropTypes.bool,
+    noHero: PropTypes.bool,
     extraClass: PropTypes.string
 }

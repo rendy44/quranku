@@ -1,12 +1,7 @@
 @import '../../../styles/MainUtil';
 
 .hero {
-    height: 320px;
-    // background-image: url('./img/hero.bg.webp');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    height: 400px;
     position: relative;
     display: flex;
     align-items: center;

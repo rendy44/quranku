@@ -22,7 +22,7 @@ class Home extends React.Component {
   render() {
     if (this.state.isLoaded) {
       return (
-        <Layout title='QURANKU'>
+        <Layout>
           <Hero>
             <QuickSearch />
             <QuickLinks />
