@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build & next start"
+    "export": "next export",
+    "deploy": "npm run build && npm run export"
   },
   "dependencies": {
     "frow": "^3.3.2",
