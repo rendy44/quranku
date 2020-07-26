@@ -1,9 +1,16 @@
 @import '../../../styles/MainUtil';
 
 .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 80px;
     background-color: $main;
-    padding: 2rem 0;
+    // padding: 2rem 0;
     color: $white;
+    display: flex;
+    align-items: center;
 
     a {
         color: $white;

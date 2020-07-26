@@ -108,8 +108,10 @@ export class DetailSuratBody extends React.Component {
                     </Layout>
                 )
             } else {
-                return (<Layout title='Kesalahan'>
-                    Halaman salah broo
+                return (<Layout title='Kesalahan' isGenericPage={true}>
+                    <article>
+                        <p>Surat yang Anda cari tidak ditemukan</p>
+                    </article>
                 </Layout>)
             }
         } else {

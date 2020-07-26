@@ -7,6 +7,7 @@ import QuickLinks from '../components/home/QuickLinks';
 import DataListSurat from '../public/data/surah.json';
 import Section from '../components/global/Section';
 import { ListSurat, ListSuratItem } from '../components/home/ListSurat';
+import styles from './index.module.scss';
 
 class Home extends React.Component {
 
@@ -26,9 +27,8 @@ class Home extends React.Component {
           <Hero>
             <QuickSearch />
             <QuickLinks />
-            {/* <div className='' */}
           </Hero>
-          <Section title={'Daftar Surat'}>
+          <Section title={'Daftar Surat'} extraClass={styles.fullSection}>
             <ListSurat>
               {this.state.listSuratHtml}
             </ListSurat>
