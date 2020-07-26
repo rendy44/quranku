@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaSearch } from "react-icons/fa"
-import styles from './QuickSearch.module.scss'
+import styles from './style.module.scss'
 
 class QuickSearch extends React.Component {
     constructor() {

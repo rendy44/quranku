@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import styles from './ListSurat.module.scss'
+import styles from './style.module.scss'
 
 export function ListSurat(props) {
     return (
