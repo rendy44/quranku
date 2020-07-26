@@ -80,7 +80,8 @@
 }
 
 @mixin arabicBasic {
-    font-family: 'Amiri', serif;
+    // font-family: 'Amiri', serif;
+    font-family: 'UthmanTahaNaskh', serif;
 }
 
 @mixin rotate($val) {
