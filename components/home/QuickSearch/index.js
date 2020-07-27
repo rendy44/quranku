@@ -1,13 +1,15 @@
 import React from 'react'
-import { FaSearch } from "react-icons/fa"
-import styles from './style.module.scss'
+import { IoMdSearch } from "react-icons/io"
+import styles from './style.module.scss';
+import PropTypes from 'prop-types';
 
 class QuickSearch extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
             querySearch: '',
+            source: this.props.source
         }
 
         this.handleChanges = this.handleChanges.bind(this);
@@ -19,8 +21,14 @@ class QuickSearch extends React.Component {
     }
 
     handleSubmit(event) {
+        const { source, querySearch } = this.state;
         event.preventDefault();
-        alert(this.state.querySearch);
+
+        alert('Terima kasih sudah mencoba QuranKU, untuk saat ini fitur ini belum tersedia :)')
+
+        let findSurat = source.some((obj) => { obj.title == querySearch });
+        console.log(findSurat);
+        // alert(findSurat);
     }
 
     render() {
@@ -29,7 +37,7 @@ class QuickSearch extends React.Component {
                 <form className={styles.form} onSubmit={this.handleSubmit}>
                     <input className={styles.input} type='text' placeholder={'Cari surat atau ayat'} onChange={this.handleChanges} value={this.state.querySearch} />
                     <button className={styles.search} type='submit' >
-                        <FaSearch color={'#ffffff'} />
+                        <IoMdSearch color='#ffffff' />
                     </button>
                 </form>
             </>
@@ -41,4 +49,7 @@ class QuickSearch extends React.Component {
     }
 }
 
+QuickSearch.propTypes = {
+    source: PropTypes.array.isRequired
+}
 export default QuickSearch;

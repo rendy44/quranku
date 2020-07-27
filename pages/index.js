@@ -25,7 +25,7 @@ class Home extends React.Component {
       return (
         <Layout>
           <Hero>
-            <QuickSearch />
+            <QuickSearch source={DataListSurat} />
             <QuickLinks />
           </Hero>
           <Section title={'Daftar Surat'} extraClass={styles.fullSection}>

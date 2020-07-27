@@ -65,7 +65,7 @@ export class DetailSuratBody extends React.Component {
                                             console.log('Copied')
                                         }}>
                                         <button className={styles.ayatToolboxDetail}>
-                                            <FaCopy /> Copy
+                                            <FaCopy /> Salin
                                     </button>
                                     </CopyToClipboard>
                                 </div>
